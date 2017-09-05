@@ -1,0 +1,22 @@
+image: continuumio/miniconda3
+
+default:
+  script:
+    - conda install -y python=3.5 numpy=1.10 scipy=0.16 matplotlib=1.5.1
+    - python setup.py test
+
+minimal_27:
+  script:
+    - conda install -y python=2.7 numpy=1.8 scipy=0.13 matplotlib=1.3.1
+    - python setup.py test
+  when: manual
+
+
+toolkits_35:
+  script:
+    - conda install -y python=3.5 numpy scipy matplotlib
+    - conda install -y -c rdkit rdkit
+    - conda install -y -c openbabel openbabel
+    - python setup.py test
+    - python -m unittest toolkits_tests.toolkits_test
+  when: manual
